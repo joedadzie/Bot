@@ -57,11 +57,21 @@ namespace Bot_Application1.Dialogs
                     { }
 
                     if (teamScore > oppScore)
-                        await context.PostAsync("Yeah, a Win!!");
+                    {
+                        string winMessage = "Yeah, a " + teamScore + "-" + oppScore  + "win";
+                        await context.PostAsync(winMessage);
+                    }
                     else if (teamScore < oppScore)
-                        await context.PostAsync("Sorry, we lost :(");
+                    {
+                        string lossMessage = "We lost :) " + teamScore + "-" + oppScore;
+                        await context.PostAsync(lossMessage);
+                    }           
                     else if (teamScore == oppScore)
-                        await context.PostAsync("We'll take a tie");
+                    {
+                        string tieMessage = "We tied " + teamScore + "-" + oppScore;
+                        await context.PostAsync(tieMessage);
+                    }
+                        
 
                     //if (int.TryParse(stringTokens[0], out intScore))
                     //{
