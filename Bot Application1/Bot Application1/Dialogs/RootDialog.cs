@@ -51,27 +51,28 @@ namespace Bot_Application1.Dialogs
                     int teamScore = 0;
                     int oppScore = 0;
 
-                    if (int.TryParse(stringTokens[0], out teamScore))
-                    { }
-                    if (int.TryParse(stringTokens[1], out oppScore))
-                    { }
+                    if ((int.TryParse(stringTokens[0], out teamScore)) && (int.TryParse(stringTokens[1], out oppScore)))
+                    {
+                        if (teamScore > oppScore)
+                        {
+                            string winMessage = "Yeah, a " + teamScore + "-" + oppScore + " win";
+                            await context.PostAsync(winMessage);
+                        }
+                        else if (teamScore < oppScore)
+                        {
+                            string lossMessage = "We lost :) " + teamScore + "-" + oppScore;
+                            await context.PostAsync(lossMessage);
+                        }
+                        else if (teamScore == oppScore)
+                        {
+                            string tieMessage = "We tied " + teamScore + "-" + oppScore;
+                            await context.PostAsync(tieMessage);
+                        }
 
-                    if (teamScore > oppScore)
-                    {
-                        string winMessage = "Yeah, a " + teamScore + "-" + oppScore  + "win";
-                        await context.PostAsync(winMessage);
                     }
-                    else if (teamScore < oppScore)
-                    {
-                        string lossMessage = "We lost :) " + teamScore + "-" + oppScore;
-                        await context.PostAsync(lossMessage);
-                    }           
-                    else if (teamScore == oppScore)
-                    {
-                        string tieMessage = "We tied " + teamScore + "-" + oppScore;
-                        await context.PostAsync(tieMessage);
-                    }
-                        
+
+
+
 
                     //if (int.TryParse(stringTokens[0], out intScore))
                     //{
